@@ -583,7 +583,7 @@ for(bp_var in unique(bp_3$variable)) {
 
 And that data-averaged posterior? Both with t-test and the Gaffke test and for all variables, we see
 no problems and reasonably tight confidence intervals centered at the expected
-value of 0.33. The prior for the `top_model` parameter is not easily derived, so we do a two sample test comparing the simulated prior values to the probabilities.
+value of 0.33. The prior for the `top_model` parameter is not easily derived, so we do a two sample paired test comparing the simulated prior values to the probabilities.
 
 ```{r}
 for(bp_var in paste0("is_model", 0:2)) {
@@ -596,7 +596,8 @@ for(bp_var in paste0("is_model", 0:2)) {
 
 ```{r}
 bp_3_top <- bp_3 |> filter(variable == "top_model")
-t.test(bp_3_top$prob, bp_3_top$simulated_value)
+t.test(bp_3_top$prob, bp_3_top$simulated_value, paired = TRUE)
+gaffke_test_paired(bp_3_top$prob, bp_3_top$simulated_value)
 ```
 
 
