@@ -121,7 +121,7 @@ bridgesampling)</h1>
                         <h4 data-toc-skip class="author">Martin
 Modrák</h4>
             
-            <h4 data-toc-skip class="date">2026-03-10</h4>
+            <h4 data-toc-skip class="date">2026-07-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/hyunjimoon/SBC/blob/HEAD/vignettes/bayes_factor.Rmd" class="external-link"><code>vignettes/bayes_factor.Rmd</code></a></small>
       <div class="hidden name"><code>bayes_factor.Rmd</code></div>
@@ -139,7 +139,7 @@ and observational distributions
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mi>π</mi><mtext mathvariant="normal">obs</mtext><mn>0</mn></msubsup><mo>,</mo><msubsup><mi>π</mi><mtext mathvariant="normal">obs</mtext><mn>1</mn></msubsup></mrow><annotation encoding="application/x-tex">\pi^0_\text{obs}, \pi^1_\text{obs}</annotation></semantics></math>,
 it is the same as making an inference over a larger model of the
 form:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><mi>i</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mtext mathvariant="normal">Bernoulli</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mtext mathvariant="normal">Pr</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ℳ</mi><mn>1</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>θ</mi><mi>i</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><msubsup><mi>π</mi><mtext mathvariant="normal">prior</mtext><mi>i</mi></msubsup></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>y</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><msubsup><mi>π</mi><mtext mathvariant="normal">obs</mtext><mi>i</mi></msubsup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>θ</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mi>i</mi></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>∼</mo><mtext mathvariant="normal">Bernoulli</mtext><mo stretchy="false" form="prefix">(</mo><mtext mathvariant="normal">Pr</mtext><mo stretchy="false" form="prefix">(</mo><msub><mi>ℳ</mi><mn>1</mn></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><msub><mi>θ</mi><mi>i</mi></msub></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>∼</mo><msubsup><mi>π</mi><mtext mathvariant="normal">prior</mtext><mi>i</mi></msubsup></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right; padding-right: 0"><mi>y</mi></mtd><mtd columnalign="left" style="text-align: left; padding-left: 0"><mo>∼</mo><msubsup><mi>π</mi><mtext mathvariant="normal">obs</mtext><mi>i</mi></msubsup><mo stretchy="false" form="prefix">(</mo><msub><mi>θ</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
 i &amp;\sim \text{Bernoulli}(\text{Pr}(\mathcal{M}_1))\\
 \theta_i &amp;\sim \pi^i_\text{prior} \\
@@ -151,7 +151,7 @@ averaging (BMA). The Bayes factor is fully determined by the posterior
 distribution of the model index
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>i</mi><annotation encoding="application/x-tex">i</annotation></semantics></math>
 in this larger model:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mtext mathvariant="normal">Pr</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ℳ</mi><mi>i</mi></msub><mo>∣</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mrow><mtext mathvariant="normal">Pr</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ℳ</mi><mi>j</mi></msub><mo>∣</mo><mi>y</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><mo>=</mo><mi>B</mi><msub><mi>F</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mfrac><mrow><mtext mathvariant="normal">Pr</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ℳ</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mrow><mtext mathvariant="normal">Pr</mtext><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ℳ</mi><mi>j</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mtext mathvariant="normal">Pr</mtext><mo stretchy="false" form="prefix">(</mo><msub><mi>ℳ</mi><mi>i</mi></msub><mo>∣</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mtext mathvariant="normal">Pr</mtext><mo stretchy="false" form="prefix">(</mo><msub><mi>ℳ</mi><mi>j</mi></msub><mo>∣</mo><mi>y</mi><mo stretchy="false" form="postfix">)</mo></mrow></mfrac><mo>=</mo><mi>B</mi><msub><mi>F</mi><mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub><mfrac><mrow><mtext mathvariant="normal">Pr</mtext><mo stretchy="false" form="prefix">(</mo><msub><mi>ℳ</mi><mi>i</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mtext mathvariant="normal">Pr</mtext><mo stretchy="false" form="prefix">(</mo><msub><mi>ℳ</mi><mi>j</mi></msub><mo stretchy="false" form="postfix">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">
 \frac{\text{Pr}(\mathcal{M}_i \mid y)}{\text{Pr}(\mathcal{M}_j \mid y)} =
 BF_{i,j}\frac{\text{Pr}(\mathcal{M}_i)}{\text{Pr}(\mathcal{M}_j)}
 </annotation></semantics></math></p>
@@ -206,7 +206,7 @@ works only with <code>rstan</code>, so we cannot use
 from the <code>bridgesampling</code> package — a test of presence of a
 random effect in a binomial probit model. Specifically, under
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>1</mn></msub><annotation encoding="application/x-tex">H_1</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>y</mi><mi>i</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mtext mathvariant="normal">Bernoulli</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mi>Φ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>α</mi><mo>+</mo><mi>β</mi><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><msub><mi>γ</mi><msub><mi>g</mi><mi>i</mi></msub></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mtd><mtd columnalign="right" style="text-align: right"><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>N</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>γ</mi><mi>j</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mi>σ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mtd><mtd columnalign="right" style="text-align: right"><mi>j</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>G</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>α</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><msqrt><mn>10</mn></msqrt><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>β</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><msqrt><mn>10</mn></msqrt><mo stretchy="true" form="postfix">)</mo></mrow><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>σ</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mtext mathvariant="normal">Half</mtext><mi>N</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>y</mi><mi>i</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mtext mathvariant="normal">Bernoulli</mtext><mo stretchy="false" form="prefix">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false" form="prefix">(</mo><mi>α</mi><mo>+</mo><mi>β</mi><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><msub><mi>γ</mi><msub><mi>g</mi><mi>i</mi></msub></msub><mo stretchy="false" form="postfix">)</mo><mo stretchy="false" form="postfix">)</mo><mo>,</mo></mtd><mtd columnalign="right" style="text-align: right"><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>N</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><msub><mi>γ</mi><mi>j</mi></msub></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mi>N</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mi>σ</mi><mo stretchy="false" form="postfix">)</mo><mo>,</mo></mtd><mtd columnalign="right" style="text-align: right"><mi>j</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>G</mi></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>α</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mi>N</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><msqrt><mn>10</mn></msqrt><mo stretchy="false" form="postfix">)</mo><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>β</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mi>N</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><msqrt><mn>10</mn></msqrt><mo stretchy="false" form="postfix">)</mo><mo>,</mo></mtd></mtr><mtr><mtd columnalign="right" style="text-align: right"><mi>σ</mi></mtd><mtd columnalign="left" style="text-align: left"><mo>∼</mo><mtext mathvariant="normal">Half</mtext><mi>N</mi><mo stretchy="false" form="prefix">(</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false" form="postfix">)</mo></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{aligned}
 y_i &amp;\sim  \text{Bernoulli}(\Phi(\alpha + \beta x_{i} + \gamma_{g_i})),  &amp;i = 1,2,\ldots,N\\
 \gamma_j &amp;\sim N(0, \sigma),  &amp;j = 1,2,\ldots, G \\
@@ -961,7 +961,7 @@ variables:</p>
 test and for all variables, we see no problems and reasonably tight
 confidence intervals centered at the expected value of 0.33. The prior
 for the <code>top_model</code> parameter is not easily derived, so we do
-a two sample test comparing the simulated prior values to the
+a two sample paired test comparing the simulated prior values to the
 probabilities.</p>
 <div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span><span class="op">(</span><span class="va">bp_var</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"is_model"</span>, <span class="fl">0</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -1046,30 +1046,44 @@ probabilities.</p>
 <span><span class="co">## 0.3553423</span></span></code></pre>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bp_3_top</span> <span class="op">&lt;-</span> <span class="va">bp_3</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">variable</span> <span class="op">==</span> <span class="st">"top_model"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">bp_3_top</span><span class="op">$</span><span class="va">prob</span>, <span class="va">bp_3_top</span><span class="op">$</span><span class="va">simulated_value</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">bp_3_top</span><span class="op">$</span><span class="va">prob</span>, <span class="va">bp_3_top</span><span class="op">$</span><span class="va">simulated_value</span>, paired <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
-<span><span class="co">##  Welch Two Sample t-test</span></span>
+<span><span class="co">##  Paired t-test</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## data:  bp_3_top$prob and bp_3_top$simulated_value</span></span>
-<span><span class="co">## t = 1.1922, df = 228.22, p-value = 0.2344</span></span>
-<span><span class="co">## alternative hypothesis: true difference in means is not equal to 0</span></span>
+<span><span class="co">## t = 1.2716, df = 199, p-value = 0.205</span></span>
+<span><span class="co">## alternative hypothesis: true mean difference is not equal to 0</span></span>
 <span><span class="co">## 95 percent confidence interval:</span></span>
-<span><span class="co">##  -0.02821384  0.11466385</span></span>
+<span><span class="co">##  -0.02380674  0.11025674</span></span>
 <span><span class="co">## sample estimates:</span></span>
-<span><span class="co">## mean of x mean of y </span></span>
-<span><span class="co">##  0.623225  0.580000</span></span></code></pre>
+<span><span class="co">## mean difference </span></span>
+<span><span class="co">##        0.043225</span></span></code></pre>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/gaffke_test.html">gaffke_test_paired</a></span><span class="op">(</span><span class="va">bp_3_top</span><span class="op">$</span><span class="va">prob</span>, <span class="va">bp_3_top</span><span class="op">$</span><span class="va">simulated_value</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">##  Gaffke's paired test for the difference of means of bounded variables</span></span>
+<span><span class="co">##  (using 10000 samples)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## data:  bp_3_top$prob minus bp_3_top$simulated_value</span></span>
+<span><span class="co">## lower bound = -1, upper bound = 1, p-value = 0.2712</span></span>
+<span><span class="co">## alternative hypothesis: true mean is not equal to 0</span></span>
+<span><span class="co">## 95 percent confidence interval:</span></span>
+<span><span class="co">##  -0.02791794  0.11629077</span></span>
+<span><span class="co">## sample estimates:</span></span>
+<span><span class="co">## mean difference </span></span>
+<span><span class="co">##        0.043225</span></span></code></pre>
 <p>Finally, we can also split the results into results for individual
 models (just now with even fewer fits per model) - which all look
 good!</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stats_split_3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/split_SBC_results_for_bf.html">split_SBC_results_for_bf</a></span><span class="op">(</span><span class="va">res_turtles_3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/ECDF-plots.html">plot_ecdf_diff</a></span><span class="op">(</span><span class="va">stats_split_3</span><span class="op">$</span><span class="va">stats_H0</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"M0"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bayes_factor_files/figure-html/ecdf-3-split-1.png" width="700"></p>
-<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ECDF-plots.html">plot_ecdf_diff</a></span><span class="op">(</span><span class="va">stats_split_3</span><span class="op">$</span><span class="va">stats_H1</span>, </span>
 <span>               combine_variables <span class="op">=</span> <span class="va">combine_array_elements</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"M1"</span><span class="op">)</span>  </span></code></pre></div>
 <p><img src="bayes_factor_files/figure-html/ecdf-3-split-2.png" width="700"></p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb70"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ECDF-plots.html">plot_ecdf_diff</a></span><span class="op">(</span><span class="va">stats_split_3</span><span class="op">$</span><span class="va">stats_H2</span>, </span>
 <span>               combine_variables <span class="op">=</span> <span class="va">combine_array_elements</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"M2"</span><span class="op">)</span>  </span></code></pre></div>
 <p><img src="bayes_factor_files/figure-html/ecdf-3-split-3.png" width="700"></p>
