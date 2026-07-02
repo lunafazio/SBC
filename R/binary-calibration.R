@@ -19,7 +19,7 @@ binary_probabilities_from_stats <- function(stats) {
     warning("No variables annotated with `binary_var_attribute()` found.")
     return(data.frame(variable = c(), prob = c()))
   }
-  if(!(("cdf_low" %in% names(stats)) || !("cdf_high" %in% names(stats)))) {
+  if(!("cdf_low" %in% names(stats)) || !("cdf_high" %in% names(stats))) {
     stop("The range of continous ranks (cdf_low and cdf_high) column must be present in stats.\nIf it is not present, it likely means your backend
          does not implement `SBC_posterior_cdf()`.")
   }

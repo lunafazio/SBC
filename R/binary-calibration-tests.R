@@ -149,12 +149,7 @@ gaffke_ci_from_m <- function(m, alpha = 0.05) {
   ))
 }
 
-#' @rdname gaffke_test
-#' @export
-gaffke_ci <- function(probs, B = 10000, alpha = 0.05) {
-  m <- gaffke_m(probs, B)
-  gaffke_ci_from_m(m, alpha)
-}
+
 
 gaffke_p_from_m <- function(m, mu, B, alternative = c("two.sided", "less", "greater")) {
   alternative <- match.arg(alternative)
@@ -181,26 +176,29 @@ gaffke_p_from_m <- function(m, mu, B, alternative = c("two.sided", "less", "grea
   }
 }
 
-#' @rdname gaffke_test
-#' @export
-gaffke_p <- function(probs, mu = 0.5, alpha = 0.05, B = 10000, alternative = c("two.sided", "less", "greater")) {
-  alternative <- match.arg(alternative)
-
-  m <- gaffke_m(probs, B)
-  gaffke_p_from_m(m, mu, B, alternative)
-}
-
 #' Non-parametric test for the mean of a bounded variable.
 #'
 #' @param x a vector of observed values
+#' @param y a second vector, the same length as x
+#' @param probs a vector of observed values, scaled to \[0, 1\]
 #' @param mu the mean under null hypothesis
 #' @param alpha the level of the test
-#' @param lb the lower bound for `x`
+#' @param lb,ub the lower and upper bounds for `x`
+#'        (for the paired version, it also applies to `y` you can provide a v
+#'        ector of length 2 to give different bounds to `x` and `y`)
 #' @param ub the upper bound for `x`
 #' @param B number of bootstrap samples for the null distribution
 #' @param alternative the alternative for the test.
 #'
-#' @details The test is expected to be valid for any bounded distribution without further
+#' @description A non-parametric one-sample test for the mean.
+#' The only assumptions it makes about the data is that they are i.i.d. and
+#' that the underlying distribution is bounded from both sides.
+#'
+#' @details
+#' The test is based on Gaffke 2005, though a more detailed analysis and
+#' exposition can be found in Learned-Miller & Thomas 2020.
+#'
+#' The test is expected to be valid for any bounded distribution without further
 #' assumptions. The test has been proven valid only for special cases but
 #' no counterexample is known despite some efforts in the literature to find
 #' some. The test also provides way more power (and tighter confidence intervals)
@@ -208,14 +206,23 @@ gaffke_p <- function(probs, mu = 0.5, alpha = 0.05, B = 10000, alternative = c("
 #' quite quickly to that of the t-test, which is known to be optimal
 #' in the large data limit.
 #'
+#' The paired two-sample version translates to a one-sample test with bounds
+#' computed to constrain the difference. There is no known unpaired two-sample
+#' version.
+#'
 #' In SBC the test is useful for testing the data-averaged posterior
-#' for binary variables.
+#' for binary variables - the paired version is to be used when the prior
+#' is not analytically known and so the simulated value of the variable is the
+#' second sample.
 #'
-#' @description Test a null hypothesis about the mean of i.i.d. samples.
-#' The test is based on Gaffke 2005, though a more detailed analysis and
-#' exposition can be found in Learned-Miller & Thomas 2020.
 #'
-#' @returns `gaffke_test` returns an object of class `htest`, `gaffke_p` and
+#' `gaffke_p` and `gaffke_ci` are intended for easier use in batch
+#' workflows as they directly  return the relevant numeric values,
+#' not a test object. Note that those functions expected their arguments
+#' to be scaled to \[0, 1\] already, while `gaffke_test` will work
+#' with any upper and lower bounds and do the scaling for you.
+#'
+#' @returns `gaffke_test` and `gaffke_test_paired` return an object of class `htest`, `gaffke_p` and
 #' `gaffke_ci` return just the p-value / CI as numeric for easier use in batch
 #' workflows.
 #'
@@ -226,6 +233,24 @@ gaffke_p <- function(probs, mu = 0.5, alpha = 0.05, B = 10000, alternative = c("
 #' Learned-Miller, E. and Thomas, P. S. (2020).
 #' “A New Confidence Interval for the Mean of a Bounded Random Variable.”
 #' https://arxiv.org/abs/1905.06208
+#'
+#' @examples
+#' set.seed(84623)
+#' # true mean of x = 0.5
+#' x <- rbeta(10, shape1 = 0.1, shape2 = 0.1)
+#' gaffke_test(x)
+#' # Standard t-test is invalid here due to small sample size
+#' t.test(x, mu = 0.5)
+#'
+#' # Paired version + scaling - true difference in means is ~2.5
+#' x_scaled <- x * 2 + 1
+#' y_scaled <- -1 + 3 * rbeta(length(x), shape1 = 5 * (x / 3), shape2 = 5 * (1 - x / 3))
+#' gaffke_test_paired(x_scaled, y_scaled, lb = c(1, -1), ub = c(3, 2), mu = 2)
+#'
+#' # As the number of draws increases, the test converges to a t-test
+#' x <- rbeta(100, shape1 = 0.1, shape2 = 0.1)
+#' gaffke_test(x)
+#' t.test(x, mu = 0.5)
 #'
 #' @rdname gaffke_test
 #' @export
@@ -247,7 +272,8 @@ gaffke_test <- function(x, mu = 0.5, alpha = 0.05, lb = 0, ub = 1, B = 10000, al
   mu_scaled <- (mu - lb) / (ub - lb)
   m <- gaffke_m(x_scaled, B = B)
   p <- gaffke_p_from_m(m, mu_scaled, B = B, alternative = alternative)
-  ci <- gaffke_ci_from_m(m, alpha = alpha)
+  ci_scaled <- gaffke_ci_from_m(m, alpha = alpha)
+  ci <- ci_scaled * (ub - lb) + lb
   attr(ci, "conf.level") <- 1 - alpha
 
   structure(list(
@@ -261,4 +287,61 @@ gaffke_test <- function(x, mu = 0.5, alpha = 0.05, lb = 0, ub = 1, B = 10000, al
     parameter = c("lower bound" = lb, "upper bound" = ub)
   ),
   class = "htest")
+}
+
+#' @rdname gaffke_test
+#' @export
+gaffke_test_paired <- function(x, y, mu = 0, alpha = 0.05, lb = 0, ub = 1, B = 10000, alternative = c("two.sided", "less", "greater")) {
+  dname_x <- deparse1(substitute(x))
+  dname_y <- deparse1(substitute(y))
+
+  stopifnot(length(lb) == 1 || length(lb) == 2)
+  stopifnot(length(ub) == 1 || length(ub) == 2)
+  stopifnot(all(is.finite(lb)))
+  stopifnot(all(is.finite(ub)))
+
+  stopifnot(length(x) == length(y))
+  if(length(lb) == 1) {
+    lb <- c(lb, lb)
+  }
+  if(length(ub) == 1) {
+    ub <- c(ub, ub)
+  }
+
+  stopifnot(all(x >= lb[1]))
+  stopifnot(all(x <= ub[1]))
+
+  stopifnot(all(y >= lb[2]))
+  stopifnot(all(y <= ub[2]))
+
+  lb_diff <- lb[1] - ub[2]
+  ub_diff <- ub[1] - lb[2]
+
+  stopifnot("mu must be within the implied lower and upper bounds for the difference " = (mu >= lb_diff && mu <= ub_diff))
+
+  diff <- x - y
+
+  res_one_sample <- gaffke_test(diff, mu = mu, alpha = alpha, lb = lb_diff, ub = ub_diff, B = B, alternative = alternative)
+
+  res_one_sample$method <- paste0("Gaffke's paired test for the difference of means of bounded variables  (using ", B, " samples)")
+  res_one_sample$data.name <- paste0(dname_x, " minus ", dname_y)
+  res_one_sample$estimate <- c("mean difference" = mean(x - y))
+
+  res_one_sample
+}
+
+#' @rdname gaffke_test
+#' @export
+gaffke_ci <- function(probs, B = 10000, alpha = 0.05) {
+  m <- gaffke_m(probs, B)
+  gaffke_ci_from_m(m, alpha)
+}
+
+#' @rdname gaffke_test
+#' @export
+gaffke_p <- function(probs, mu = 0.5, alpha = 0.05, B = 10000, alternative = c("two.sided", "less", "greater")) {
+  alternative <- match.arg(alternative)
+
+  m <- gaffke_m(probs, B)
+  gaffke_p_from_m(m, mu, B, alternative)
 }

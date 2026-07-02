@@ -109,7 +109,7 @@ plot_rank_hist.data.frame <- function(x, variables = NULL, bins = NULL, prob = 0
           geom_segment(aes(x=0,y=ci_mean,xend=max_rank,yend=ci_mean),colour="grey25") +
           geom_polygon(data=data.frame(x= CI_polygon_x,y= CI_polygon_y),aes(x=x,y=y),fill="skyblue",color="skyblue1",alpha=0.33) +
           geom_histogram(breaks =  seq(0, max_rank, length.out = bins + 1), closed = "left" ,fill="#808080",colour="black") +
-          labs(y = "count") +
+          labs(y = "count", x = "rank") +
           do.call(facet_wrap, all_facet_args)
 
 }
