@@ -18,7 +18,8 @@ SBC_backend_bridgesampling <- function(..., model_var = "model", prior_probs = N
     prior_probs <- rep(1 / length(all_backends), times = length(all_backends))
   } else {
     stopifnot(is.numeric(prior_probs))
-    stopifnot(length(prior_probs) == length(all_datasets))
+    stopifnot("Length of prior_probs must match the number of supplied backends" = length(prior_probs) == length(all_backends))
+    stopifnot("Prior probabilities must sum to 1" = abs(1 - sum(prior_probs)) < 1e-6)
   }
 
   structure(list(all_backends = all_backends,
