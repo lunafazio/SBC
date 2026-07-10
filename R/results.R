@@ -1393,10 +1393,10 @@ print.SBC_results <- function(x) {
 }
 
 #' @export
-print.SBC_results_summary <- function(x) {
+print.SBC_results_summary <- function(x, color = TRUE) {
   cat("SBC_results with", x$n_fits, "total fits.\n")
 
-  if(requireNamespace("crayon", quietly = TRUE)) {
+  if(color && requireNamespace("crayon", quietly = TRUE)) {
     status_string <- dplyr::case_when(
       is.na(x$messages$type) ~ crayon::yellow("[???]"),
       x$messages$type == "info" ~ "[INFO]",
@@ -1418,9 +1418,11 @@ print.SBC_results_summary <- function(x) {
 
   cat(paste0(" - ", status_string, " ", messages_indent, collapse = "\n"))
 
-  all_ok <- !any(x$messages$type == "bad")
+  all_ok <- !any(x$messages$type == "bad", na.rm = TRUE)
 
-  if(!all_ok) {
+  if(is.na(all_ok)) {
+    message("All diagnostics are NA, this should generally not happen, consider filing a bug.")
+  } else if(!all_ok) {
     message("Not all diagnostics are OK.\nYou can learn more by inspecting $default_diagnostics, ",
             "$backend_diagnostics \nand/or investigating $outputs/$messages/$warnings for detailed output from the backend.")
   }
