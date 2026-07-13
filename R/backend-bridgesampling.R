@@ -409,7 +409,32 @@ rbind.SBC_bridgesampling_diagnostics <- function(...) {
   res
 }
 
-#' Custom select implementation maintaining information about submodels
+#' Custom implementation of dplyr verbs to maintain  information about submodels
+#' @rdname SBC_bridgesampling_diagnostics-dplyr
+#' @exportS3Method dplyr::mutate
+mutate.SBC_bridgesampling_diagnostics <- function(diags, ...) {
+  mutated <- NextMethod()
+  attr(mutated, "submodel_classes") <- attr(diags, "submodel_classes")
+  mutated
+}
+
+#' @rdname SBC_bridgesampling_diagnostics-dplyr
+#' @exportS3Method dplyr::arrange
+arrange.SBC_bridgesampling_diagnostics <- function(diags, ...) {
+  arranged <- NextMethod()
+  attr(arranged, "submodel_classes") <- attr(diags, "submodel_classes")
+  arranged
+}
+
+#' @rdname SBC_bridgesampling_diagnostics-dplyr
+#' @exportS3Method dplyr::select
+select.SBC_bridgesampling_diagnostics <- function(diags, ...) {
+  selected <- NextMethod()
+  attr(selected, "submodel_classes") <- attr(diags, "submodel_classes")
+  selected
+}
+
+#' @rdname SBC_bridgesampling_diagnostics-dplyr
 #' @exportS3Method dplyr::select
 select.SBC_bridgesampling_diagnostics <- function(diags, ...) {
   selected <- NextMethod()
